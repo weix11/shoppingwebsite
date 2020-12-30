@@ -22,6 +22,7 @@
         <td><%= i %></td>
         <td><%= link_to item.product.name, pd_path( item.product ) %> </td>
         <td><%= item.product.price %></td>
+        <td><%= link_to '删除', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% i = i + 1 %>
     <% end %>

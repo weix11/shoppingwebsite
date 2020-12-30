@@ -34,7 +34,7 @@
               <%= link_to "所有订单" ,"/orders"%>
             </li>
             <li class="<%= "active" if current_page?("/products") %>">
-              <%= link_to "商品理" ,"/products" %>
+              <%= link_to "商品管理" ,"/products" %>
             </li>
           <% end %>
           <% if user_signed_in? and current_user.email != "admin@qq.com" %>

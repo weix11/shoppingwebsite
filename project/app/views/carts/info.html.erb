@@ -26,6 +26,7 @@
         <td><%= item.product.price %></td>
         <td><%= item.num %></td>
         <td><%= item.datetime %></td>
+        <td><%= link_to '删除', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% i = i + 1 %>
     <% end %>
