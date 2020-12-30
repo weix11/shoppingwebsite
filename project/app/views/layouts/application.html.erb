@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-default navbar-fixed-top" role=navigation">
+    <div class="container">
+      <div class="navbar-header" align="left">
+        <%= link_to "购物网站", root_path, class: "navbar-brand" %>
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="collapse">
+        <ul class="nav navbar-nav">
+          <li class="<%= "active" if current_page?("/") %>">
+            <%= link_to "主页", root_path %>
+          </li>
+          <% if user_signed_in? and current_user.email == "admin@qq.com"%>
+            <li class="<%= "active" if current_page?("/orders") %>">
+              <%= link_to "所有订单" ,"/orders"%>
+            </li>
+            <li class="<%= "active" if current_page?("/products") %>">
+              <%= link_to "商品理" ,"/products" %>
+            </li>
+          <% end %>
+          <% if user_signed_in? and current_user.email != "admin@qq.com" %>
+            <li class="<%= "active" if current_page?("/show") %>">
+              <%= link_to "购物车", show_cart_path %>
+            </li>
+            <li class="<%= "active" if current_page?("/jiesuan") %>">
+              <%= link_to "结算", jiesuan_path %>
+            </li>
+            <li class="<%= "active" if current_page?("/showcollections") %>">
+              <%= link_to "收藏夹" , show_collection_path %>
+            </li>
+          <% end %>
+
+          <% unless user_signed_in? %>
+            <li class="<%= "active" if current_page?("/users/sign_up") %>">
+              <%= link_to "注册", new_user_registration_path %>
+            </li>
+            <li class="<%= "active" if current_page?("/users/sign_in") %>">
+              <%= link_to "登陆", new_user_session_path %>
+            </li>
+          <% end %>
+        </ul>
+
+        <% if user_signed_in? %>
+          <div class="navbar-right">
+            <p class="navbar-text">
+              欢迎你：<%= current_user.email %>
+            </p>
+            <ul class="nav navbar-nav">
+              <li><%= link_to "退出", destroy_user_session_path,
+                              method: :delete %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+  </div>
+  </body>
+
+  <div id="footer" style="background-color:ghostwhite;clear:both;text-align:center;">
+    &nbsp Copyright©wxl</div>
+
+</html>

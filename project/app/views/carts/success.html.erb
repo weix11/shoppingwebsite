@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1>提交订单成功!</h1>
+</div>
+
+  <% total = 0 %>
+  <% current_user.carts.each do |item| %>
+    <% total = total + item.num*item.product.price %>
+  <% end %>
+<h2>
+  你已成功付款：<%=total%>元
+</h2>

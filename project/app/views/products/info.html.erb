@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1><%= @product.name %></h1>
+</div>
+<a class="col-md-6">
+<img src= <%= @product.path %> width="400" height="400" />
+</a>
+
+<a class="col-md-6  content mt-auto mb-auto">
+  <h2>商品名称: <%=@product.name %></h2>
+<h3>价格: <%=@product.price %></h3>
+<h3>种类: <%= @product.description %></h3>
+  <h3>销量: <%= @product.sale %></h3>
+  <br />
+  <br />
+  <br />
+  <%= form_for [ @product, Cart.new ] do |f| %>
+    <p>
+      <%= f.label :购买数量 %>
+      <%= f.text_field :num %>
+    </p>
+    <p>
+      <%= f.submit "加入到购物车", class: "btn btn-success" %>
+    </p>
+  <% end %>
+
+  <%= form_for [ @product, Collection.new ] do |f| %>
+    <p>
+      <%= f.submit "收藏", class: "btn btn-info" %>
+    </p>
+  <% end %>
+</a>
+
