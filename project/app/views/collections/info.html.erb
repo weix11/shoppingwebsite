@@ -17,7 +17,7 @@
 
     <tbody>
     <% i = 1 %>
-    <% current_user.carts.each do |item| %>
+    <% current_user.collections.each do |item| %>
       <tr>
         <td><%= i %></td>
         <td><%= link_to item.product.name, pd_path( item.product ) %> </td>
